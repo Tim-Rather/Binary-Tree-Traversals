@@ -66,7 +66,43 @@ namespace BinaryTreeTraversals
                     }
                 }
             }
+            public void PreorderRecurse(Node root)
+            {
+                if (root != null)
+                {
+                    Console.Write(root.Data + " ");
+                    PreorderRecurse(root.Left);
+                    PreorderRecurse(root.Right);
+                }
+            }
+
+            public void PreorderIterative(Node root)
+            {
+                if(root == null)
+                {
+                    return;
+                }
+
+                Stack<Node> stack = new Stack<Node>();
+                stack.Push(root);
+
+                while(stack.Count >= 1)
+                {
+                    Node topNode = stack.Pop();
+                    Console.Write(topNode.Data + " ");
+
+                    if(topNode.Right != null)
+                    {
+                        stack.Push(topNode.Right);
+                    }
+                    if(topNode.Left != null)
+                    {
+                        stack.Push(topNode.Left);
+                    }
+                }
+            }
         }
+
 
         static void Main(string[] args)
         {
@@ -83,6 +119,14 @@ namespace BinaryTreeTraversals
             tree.Insert(76);
             tree.Insert(72);
             tree.Insert(100);
+            Node root = tree.TreeRoot();
+            Console.WriteLine("Preorder Recursive Traversal: ");
+            tree.PreorderRecurse(root);
+            Console.WriteLine(" ");
+            Console.WriteLine();
+            Console.WriteLine("Preorder Iterative Traversal: ");
+            tree.PreorderIterative(root);
+            Console.ReadLine();
 
         }
     }
