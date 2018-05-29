@@ -101,6 +101,16 @@ namespace BinaryTreeTraversals
                     }
                 }
             }
+
+            public void InorderRecurse(Node root)
+            {
+                if (root != null)
+                {
+                    InorderRecurse(root.Left);
+                    Console.Write(root.Data + " ");
+                    InorderRecurse(root.Right);
+                }
+            }
         }
 
 
@@ -126,6 +136,10 @@ namespace BinaryTreeTraversals
             Console.WriteLine();
             Console.WriteLine("Preorder Iterative Traversal: ");
             tree.PreorderIterative(root);
+            Console.WriteLine(" ");
+            Console.WriteLine();
+            Console.WriteLine("Inorder Recurisve Traversal: ");
+            tree.InorderRecurse(root);
             Console.ReadLine();
 
         }
