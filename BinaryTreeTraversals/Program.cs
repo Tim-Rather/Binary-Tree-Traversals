@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BinaryTreeTraversals
 {
-
     class Program
     {
         public class Node
@@ -66,12 +65,13 @@ namespace BinaryTreeTraversals
                     }
                 }
             }
+
             public void PreorderRecurse(Node root)
             {
                 if (root != null)
                 {
                     // N - L - R pattern
-                    Console.Write(root.Data + " ");
+                    root.DisplayNode();
                     PreorderRecurse(root.Left);
                     PreorderRecurse(root.Right);
                 }
@@ -91,7 +91,7 @@ namespace BinaryTreeTraversals
                 {
                     //immediately record first node in stack which starts with root
                     Node topNode = stack.Pop();
-                    Console.Write(topNode.Data + " ");
+                    topNode.DisplayNode();
 
                     if (topNode.Right != null) // check for right children, if exist add to stack
                     {
@@ -110,7 +110,7 @@ namespace BinaryTreeTraversals
                 {
                     // L - N - R pattern
                     InorderRecurse(root.Left);
-                    Console.Write(root.Data + " ");
+                    root.DisplayNode();
                     InorderRecurse(root.Right);
                 }
             }
@@ -130,7 +130,7 @@ namespace BinaryTreeTraversals
                     }
 
                     curr = stack.Pop(); //if children nodes are null will remove parent node and record
-                    Console.Write(curr.Data + " ");
+                    curr.DisplayNode();
                     curr = curr.Right; //check right children which are added to stack. after recording right node parent's parent at top of stack
                 }
             }
@@ -142,7 +142,7 @@ namespace BinaryTreeTraversals
                     // L - R - N pattern
                     PostorderRecurse(root.Left);
                     PostorderRecurse(root.Right);
-                    Console.Write(root.Data + " ");
+                    root.DisplayNode();
                 }
             }
 
@@ -171,7 +171,7 @@ namespace BinaryTreeTraversals
                         else
                         {
                             stack.Pop();
-                            Console.Write(current.Data + " ");
+                            current.DisplayNode();
                         }
                     }
                     else if (current.Left == prev) // move up tree and check for children on right of current, enter above test if so and traverse right accordingly
@@ -183,19 +183,18 @@ namespace BinaryTreeTraversals
                         else
                         {
                             stack.Pop();
-                            Console.Write(current.Data + " ");
+                            current.DisplayNode();
                         }
                     }
                     else if (current.Right == prev) //if current is right child of parent node then left and right have been recorded and can finally record N
                     {
                         stack.Pop();
-                        Console.Write(current.Data + " ");
+                        current.DisplayNode();
                     }
                     prev = current; // prior to moving onto next node record previous to use with tests
                 }
             }
         } 
-
 
         static void Main(string[] args)
         {
@@ -236,7 +235,6 @@ namespace BinaryTreeTraversals
             Console.WriteLine("Postorder Iterative Traversal: ");
             tree.PostorderIterative(root);
             Console.ReadLine();
-
         }
     }
 }
