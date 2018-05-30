@@ -70,6 +70,7 @@ namespace BinaryTreeTraversals
             {
                 if (root != null)
                 {
+                    // N - L - R pattern
                     Console.Write(root.Data + " ");
                     PreorderRecurse(root.Left);
                     PreorderRecurse(root.Right);
@@ -107,6 +108,7 @@ namespace BinaryTreeTraversals
             {
                 if (root != null)
                 {
+                    // L - N - R pattern
                     InorderRecurse(root.Left);
                     Console.Write(root.Data + " ");
                     InorderRecurse(root.Right);
@@ -130,6 +132,17 @@ namespace BinaryTreeTraversals
                     curr = stack.Pop(); //if children nodes are null will remove parent node and record
                     Console.Write(curr.Data + " ");
                     curr = curr.Right; //check right children which are added to stack. after recording right node parent's parent at top of stack
+                }
+            }
+
+            public void PostorderRecurse(Node root)
+            {
+                if (root != null)
+                {
+                    // L - R - N pattern
+                    PostorderRecurse(root.Left);
+                    PostorderRecurse(root.Right);
+                    Console.Write(root.Data + " ");
                 }
             }
         }
@@ -165,6 +178,11 @@ namespace BinaryTreeTraversals
             Console.WriteLine();
             Console.WriteLine("Inorder Iterative Traversal: ");
             tree.InorderIterative(root);
+            Console.WriteLine(" ");
+            Console.WriteLine();
+            Console.WriteLine("Postorder Recursive Traversal: ");
+            tree.PostorderRecurse(root);
+
             Console.ReadLine();
 
         }
